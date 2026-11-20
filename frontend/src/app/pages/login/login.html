@@ -1,0 +1,46 @@
+<main class="login-container">
+  <section class="login-card">
+    <header class="login-header">
+      <h1>Sistema de Pacientes</h1>
+      <p>Acesse com suas credenciais para gerenciar os cadastros da clínica</p>
+    </header>
+
+    @if (erro()) {
+      <div class="alert-error" role="alert">{{ erro() }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="entrar()" class="login-form">
+      <div class="field">
+        <label for="cpf">CPF</label>
+        <input
+          id="cpf"
+          type="text"
+          formControlName="cpf"
+          placeholder="Digite seu CPF"
+          autocomplete="username"
+        />
+        @if (form.controls.cpf.invalid && form.controls.cpf.touched) {
+          <small class="field-error">CPF é obrigatório.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="senha">Senha</label>
+        <input
+          id="senha"
+          type="password"
+          formControlName="senha"
+          placeholder="Digite sua senha"
+          autocomplete="current-password"
+        />
+        @if (form.controls.senha.invalid && form.controls.senha.touched) {
+          <small class="field-error">Senha é obrigatória.</small>
+        }
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="carregando()">
+        {{ carregando() ? 'Entrando...' : 'Entrar' }}
+      </button>
+    </form>
+  </section>
+</main>

@@ -1,0 +1,139 @@
+<header class="topbar">
+  <div class="topbar-content">
+    <h1>Gestão de Pacientes</h1>
+    <button type="button" class="btn-logout" (click)="sair()">Sair</button>
+  </div>
+</header>
+
+<main class="container">
+  @if (erro()) {
+    <div class="alert alert-error" role="alert">{{ erro() }}</div>
+  }
+
+  @if (sucesso()) {
+    <div class="alert alert-success" role="status">{{ sucesso() }}</div>
+  }
+
+  <section class="card">
+    <h2>
+      {{ editandoId() !== null ? 'Editar Paciente #' + editandoId() : 'Novo Paciente' }}
+    </h2>
+
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="patient-form">
+      <div class="form-grid">
+        <div class="field">
+          <label for="nome">Nome completo</label>
+          <input id="nome" type="text" formControlName="nome" placeholder="Ex.: Maria Silva" />
+          @if (form.controls.nome.invalid && form.controls.nome.touched) {
+            <small class="field-error">Nome é obrigatório.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="cpf">CPF</label>
+          <input id="cpf" type="text" formControlName="cpf" placeholder="Ex.: 12345678900" />
+          @if (form.controls.cpf.invalid && form.controls.cpf.touched) {
+            <small class="field-error">CPF é obrigatório.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input id="dataNascimento" type="date" formControlName="dataNascimento" />
+          @if (form.controls.dataNascimento.invalid && form.controls.dataNascimento.touched) {
+            <small class="field-error">Data de nascimento é obrigatória.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="telefone">Telefone</label>
+          <input id="telefone" type="text" formControlName="telefone" placeholder="Ex.: 11999998888" />
+          @if (form.controls.telefone.invalid && form.controls.telefone.touched) {
+            <small class="field-error">Telefone é obrigatório.</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="plano">Plano de Saúde</label>
+          <input id="plano" type="text" formControlName="plano" placeholder="Ex.: Unimed, Bradesco, Particular" />
+          @if (form.controls.plano.invalid && form.controls.plano.touched) {
+            <small class="field-error">Plano é obrigatório.</small>
+          }
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="salvando()">
+          @if (salvando()) {
+            Salvando...
+          } @else {
+            {{ editandoId() !== null ? 'Salvar alterações' : 'Cadastrar paciente' }}
+          }
+        </button>
+
+        @if (editandoId() !== null) {
+          <button type="button" class="btn-secondary" (click)="cancelarEdicao()">
+            Cancelar
+          </button>
+        }
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <div class="list-header">
+      <h2>Pacientes Cadastrados ({{ pacientesFiltrados().length }})</h2>
+      <input
+        type="search"
+        class="search-input"
+        placeholder="Buscar por nome, CPF ou plano..."
+        [value]="filtro()"
+        (input)="atualizarFiltro($event)"
+      />
+    </div>
+
+    @if (carregando()) {
+      <p class="empty-state">Carregando pacientes...</p>
+    } @else if (pacientesFiltrados().length === 0) {
+      <p class="empty-state">Nenhum paciente encontrado.</p>
+    } @else {
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>Nascimento</th>
+              <th>Idade</th>
+              <th>Telefone</th>
+              <th>Plano</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (paciente of pacientesFiltrados(); track paciente.id) {
+              <tr>
+                <td>{{ paciente.id }}</td>
+                <td>{{ paciente.nome }}</td>
+                <td>{{ paciente.cpf }}</td>
+                <td>{{ formatarData(paciente.dataNascimento) }}</td>
+                <td>{{ paciente.calcularIdade() }} anos</td>
+                <td>{{ paciente.telefone }}</td>
+                <td>{{ paciente.plano }}</td>
+                <td class="actions-cell">
+                  <button type="button" class="btn-edit" (click)="iniciarEdicao(paciente)">
+                    Editar
+                  </button>
+                  <button type="button" class="btn-delete" (click)="excluir(paciente)">
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </section>
+</main>
