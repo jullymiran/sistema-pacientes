@@ -31,7 +31,7 @@
 
         <div class="field">
           <label for="cpf">CPF</label>
-          <input id="cpf" type="text" formControlName="cpf" placeholder="Ex.: 12345678900" />
+          <input id="cpf" type="text" formControlName="cpf" placeholder="Ex.: 123.456.789-00" />
           @if (form.controls.cpf.invalid && form.controls.cpf.touched) {
             <small class="field-error">CPF é obrigatório.</small>
           }
@@ -47,7 +47,7 @@
 
         <div class="field">
           <label for="telefone">Telefone</label>
-          <input id="telefone" type="text" formControlName="telefone" placeholder="Ex.: 11999998888" />
+          <input id="telefone" type="text" formControlName="telefone" placeholder="Ex.: (11) 99999-8888" />
           @if (form.controls.telefone.invalid && form.controls.telefone.touched) {
             <small class="field-error">Telefone é obrigatório.</small>
           }
@@ -55,7 +55,7 @@
 
         <div class="field">
           <label for="plano">Plano de Saúde</label>
-          <input id="plano" type="text" formControlName="plano" placeholder="Ex.: Unimed, Bradesco, Particular" />
+          <input id="plano" type="text" formControlName="plano" placeholder="Ex.: Unimed, Bradesco" />
           @if (form.controls.plano.invalid && form.controls.plano.touched) {
             <small class="field-error">Plano é obrigatório.</small>
           }

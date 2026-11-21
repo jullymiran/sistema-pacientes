@@ -6,6 +6,12 @@ const Paciente = require('./paciente');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+
+if(!JWT_SECRET) {
+    throw new Error('Defina a variável de ambiente JWT_SECRET antes de iniciar o servidor.');
+}
+
+
 const app = express();
 const PORT = 3000;
 
@@ -13,12 +19,12 @@ app.use(cors());
 app.use(express.json());
 
 const usuarios = [
-   { id: 1, nome: 'Ana', cpf: '098776767612', senhaHash: bcrypt.hashSync('ana123', 10) },
+   { id: 1, nome: 'Ana', cpf: '09877676761', senhaHash: bcrypt.hashSync('ana123', 10) },
     { id: 1, nome: 'João', cpf: '12345678910', senhaHash: bcrypt.hashSync('jota002', 10) }
 ]
 
 const pacientes = [
-    new Paciente(1, "Ana", "098776767612", "2000-05-20", "1198345678", "Bradesco"),
+    new Paciente(1, "Ana", "09877676761", "2000-05-20", "1198345678", "Bradesco"),
 
     new Paciente(2, "João", "12345678910", "2000-06-12", "1393458792", "Unimed")
 

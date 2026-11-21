@@ -8,9 +8,9 @@ function  formatarCpf(valor) {
 function formatarTelefone(valor) {
 	const d = String(valor).replace(/\D/g, '');
 	if(d.length === 11)
-		return d.replace(/(\d{2})(\d{5})(\d{4})(\d{2})/, '$(1) $2-$3');
+		return d.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
 	if(d.length === 10)
-		return d.replace(/(\d{2})(\d{5})(\d{4})(\d{2})/, '$(1) $2-$3');
+		return d.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
 	return valor;
 }
 
