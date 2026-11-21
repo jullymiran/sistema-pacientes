@@ -152,12 +152,15 @@ function autenticar(req, res, next) {
     }
 }
 
-
-app.listen(PORT, (erro) => {
+if(require.main === module) {
+    app.listen(PORT, (erro) => {
     
-    if (erro) {
-        console.error('Não foi possível iniciar o servidor:', erro.message);
+        if (erro) {
+            console.error('Não foi possível iniciar o servidor:', erro.message);
         return;
     }
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+}
+
+module.exports = app;

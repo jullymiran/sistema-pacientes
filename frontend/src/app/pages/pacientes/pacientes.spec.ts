@@ -18,7 +18,7 @@ describe('Pacientes (Integração CRUD)', () => {
     {
       id: 1,
       nome: 'Ana',
-      cpf: '0987767676',
+      cpf: '09877676761',
       dataNascimento: '2000-05-20',
       telefone: '1198345678',
       plano: 'Bradesco',
@@ -26,9 +26,9 @@ describe('Pacientes (Integração CRUD)', () => {
     {
       id: 2,
       nome: 'João',
-      cpf: '12345670',
+      cpf: '12345678910',
       dataNascimento: '2000-06-12',
-      telefone: '13934587',
+      telefone: '1393458792',
       plano: 'Unimed',
     },
   ];
@@ -87,7 +87,7 @@ describe('Pacientes (Integração CRUD)', () => {
       cpf: '09814562520',
       dataNascimento: '2000-02-20',
       telefone: '11999915620',
-      plano: 'SUS',
+      plano: 'Santa saúde',
     });
     fixture.detectChanges();
 
