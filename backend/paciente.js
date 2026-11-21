@@ -1,3 +1,19 @@
+function  formatarCpf(valor) {
+	const d = String(valor).replace(/\D/g, '');
+	if(d.length !== 11)
+		return valor;
+	return d.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+}
+
+function formatarTelefone(valor) {
+	const d = String(valor).replace(/\D/g, '');
+	if(d.length === 11)
+		return d.replace(/(\d{2})(\d{5})(\d{4})(\d{2})/, '$(1) $2-$3');
+	if(d.length === 10)
+		return d.replace(/(\d{2})(\d{5})(\d{4})(\d{2})/, '$(1) $2-$3');
+	return valor;
+}
+
 class Paciente {
 constructor (id, nome, cpf, dataNascimento, telefone, plano) {
 this.id = id;
@@ -78,9 +94,9 @@ toJSON() {
 	return {
 		id: this.id,
 		nome: this.nome,
-		cpf: this.cpf,
+		cpf: formatarCpf(this.cpf),
 		dataNascimento: this.dataNascimento,
-		telefone: this.telefone,
+		telefone: formatarTelefone(this.telefone),
 		plano: this.plano,
 		idade: this.calcularIdade()
 	};

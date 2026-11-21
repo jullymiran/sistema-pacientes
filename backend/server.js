@@ -13,13 +13,14 @@ app.use(cors());
 app.use(express.json());
 
 const usuarios = [
-   { id: 1, nome: 'José', cpf: '0113456782', senhaHash: bcrypt.hashSync('123456', 10) }
+   { id: 1, nome: 'Ana', cpf: '098776767612', senhaHash: bcrypt.hashSync('ana123', 10) },
+    { id: 1, nome: 'João', cpf: '12345678910', senhaHash: bcrypt.hashSync('jota002', 10) }
 ]
 
 const pacientes = [
-    new Paciente(1, "Ana", "0987767676", "2000-05-20", "1198345678", "Bradesco"),
+    new Paciente(1, "Ana", "098776767612", "2000-05-20", "1198345678", "Bradesco"),
 
-    new Paciente(2, "João", "12345670", "2000-06-12", "13934587", "Unimed")
+    new Paciente(2, "João", "12345678910", "2000-06-12", "1393458792", "Unimed")
 
 ];
 
@@ -146,6 +147,11 @@ function autenticar(req, res, next) {
 }
 
 
-app.listen(PORT, () => {
+app.listen(PORT, (erro) => {
+    
+    if (erro) {
+        console.error('Não foi possível iniciar o servidor:', erro.message);
+        return;
+    }
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
