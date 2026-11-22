@@ -67,7 +67,7 @@ describe('Paciente', () => {
 
   test('toJSON formata o CPF e o telefone de celular', () => {
     const json = novoPaciente().toJSON();
-    exepct(json.cpf).toBe('111.222.333-44');
+    expect(json.cpf).toBe('111.222.333-44');
     expect(json.telefone).toBe('(11) 98765-4321');
   });
 
