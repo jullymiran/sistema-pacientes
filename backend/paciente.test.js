@@ -77,6 +77,7 @@ describe('Paciente', () => {
   });
 
   test('toJSON mantém o valor quando o tamanho não permite formatar', () => {
+    const json = novoPaciente({ cpf: '123', telefone: '999' }).toJSON();
     expect(json.cpf).toBe('123');
     expect(json.telefone).toBe('999');
   });
