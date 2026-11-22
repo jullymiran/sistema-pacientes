@@ -1,6 +1,6 @@
 const Paciente = require('./paciente');
 
-// Cria um paciente válido. Cada teste troca só o campo que quer testar.
+// Cria um paciente válido
 function novoPaciente(mudancas = {}) {
   const d = {
     id: 1,

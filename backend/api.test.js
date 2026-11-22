@@ -1,4 +1,4 @@
-process.env.JWT_SECRET = 'segredo-de-teste'; // sempre antes do require do server
+process.env.JWT_SECRET = 'segredo-de-teste'; 
 
 const request = require('supertest');
 const app = require('./server');
@@ -19,7 +19,7 @@ const dadosEva = {
 let token;
 let idCriado;
 
-// Antes de tudo: faz o login uma vez e guarda o token
+// Faz o login uma vez e guarda o token
 beforeAll(async () => {
   const res = await request(app)
     .post('/login')
@@ -58,7 +58,7 @@ describe('Login', () => {
 });
 
 describe('Proteção das rotas (401)', () => {
-  // Uma tabela: o mesmo teste para as cinco rotas protegidas
+  // O mesmo teste para as cinco rotas protegidas
   test.each([
     ['GET', '/pacientes'],
     ['POST', '/pacientes'],
