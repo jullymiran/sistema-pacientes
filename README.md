@@ -157,4 +157,4 @@ npm test
 ## Integrantes do Grupo
 
 - **Frontend (Angular):** *(seu nome aqui)*
-- **Backend (Node.js / Express):** *Julia Miranda Santos e*
+- **Backend (Node.js / Express):** *Julia Miranda Santos e Yuri Oliveira Ferreira*
