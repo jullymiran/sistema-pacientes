@@ -51,7 +51,7 @@ sistema-pacientes/
 
 ### 1. Clonar o repositório
 ```bash
-git clone [https://github.com/jullymiran/sistema-pacientes.git](https://github.com/jullymiran/sistema-pacientes.git)
+git clone https://github.com/jullymiran/sistema-pacientes.git
 cd sistema-pacientes
 ```
 
